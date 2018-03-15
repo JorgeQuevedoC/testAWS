@@ -27,5 +27,16 @@ class Product extends Model
      */
     protected $fillable = ['name', 'description', 'code', 'buyPrice', 'sellPrice'];
 
+    public static function scopeNamed($query,$name){
+        return $query->where('name', $name);
+    }
+
+    public static function scopeIded($query,$id){
+        return $query->where('id', $id);
+    }
+
+    public static function scopeTotalrows($query){
+        return $query->count();
+    }
     
 }

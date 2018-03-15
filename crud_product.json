@@ -10,14 +10,14 @@
         },
         {
             "name": "description",
-            "type": "text",
+            "type": "text"
         },
         {
-            "name": "buy_price",
+            "name": "buyPrice",
             "type": "double"
         },
         {
-            "name": "sell_price",
+            "name": "sellPrice",
             "type": "double"
         }
     ],
@@ -31,11 +31,11 @@
             "rules": "required"
         },
         {
-            "field": "buy_price",
+            "field": "buyPrice",
             "rules": "required"
         },
         {
-            "field": "sell_price",
+            "field": "sellPrice",
             "rules": "required"
         }
     ]
