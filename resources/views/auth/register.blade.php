@@ -26,13 +26,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Type of User') }}</label>
+                            <label for="privilege" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
                             <div class="col-md-6">
-                                <select id="typeOfUser" type="number" class="form-control" name="typeOfUser" required>
-                                    <option value=1>Admin</option>
-                                    <option value=2>Gerente</option>
-                                    <option value=3>Vendedor</option>
+                                <select id="privilege" type="number" class="form-control" name="privilege" required>
+                                    @foreach (DB::table('privileges')->selectRaw('*')->get() as $privilege)
+                                        <option value={{$privilege->id}}>{{strtoupper($privilege->privilege)}}</option>
+                                    @endforeach
                                 </select> 
                             </div>
                         </div>
