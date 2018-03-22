@@ -38,10 +38,19 @@
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
                         <li class="nav-item">
-                                <a class="nav-link " href="admin/product" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a class="nav-link " href="product" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Products
                                 </a>
-
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="section" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Sections
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="privileges" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Roles
+                                </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
