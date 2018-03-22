@@ -1,2 +1,2 @@
-# testAWS
-Islas de ventas en centros comerciales
+# Privilegios Laravel
+Implementacion de usuarios con distintos tipos de privilegios en Laravel
