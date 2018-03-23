@@ -4,12 +4,12 @@
     <div class="container">
         <div class="row">
             @include('admin.sidebar')
-            
+
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Edit Section #{{ $section->id }}</div>
+                    <div class="card-header">Create New Policy</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/section') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/policies') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                         <br />
                         <br />
 
@@ -21,11 +21,10 @@
                             </ul>
                         @endif
 
-                        <form method="POST" action="{{ url('/admin/section/' . $section->id) }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
+                        <form method="POST" action="{{ url('/admin/policies') }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
-                            @include ('admin.section.form', ['submitButtonText' => 'Update'])
+                            @include ('admin.policies.form')
 
                         </form>
 

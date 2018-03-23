@@ -1,25 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace DummyNamespace;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use DummyRootNamespaceHttp\Requests;
+use DummyRootNamespaceHttp\Controllers\Controller;
 
-use App\Privilege;
+use DummyRootNamespace{{modelNamespace}}{{modelName}};
 use Illuminate\Http\Request;
 
-class PrivilegesController extends Controller
+class DummyClass extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -28,17 +18,15 @@ class PrivilegesController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = {{pagination}};
 
         if (!empty($keyword)) {
-            $privileges = Privilege::where('privilege', 'LIKE', "%$keyword%")
-                ->orWhere('role_header', 'LIKE', "%$keyword%")
-                ->paginate($perPage);
+            ${{crudName}} = {{modelName}}::{{whereSnippet}}paginate($perPage);
         } else {
-            $privileges = Privilege::paginate($perPage);
+            ${{crudName}} = {{modelName}}::paginate($perPage);
         }
 
-        return view('admin.privileges.index', compact('privileges'));
+        return view('{{viewPath}}{{viewName}}.index', compact('{{crudName}}'));
     }
 
     /**
@@ -48,7 +36,7 @@ class PrivilegesController extends Controller
      */
     public function create()
     {
-        return view('admin.privileges.create');
+        return view('{{viewPath}}{{viewName}}.create');
     }
 
     /**
@@ -60,12 +48,12 @@ class PrivilegesController extends Controller
      */
     public function store(Request $request)
     {
-        
+        {{validationRules}}
         $requestData = $request->all();
-        
-        Privilege::create($requestData);
+        {{fileSnippet}}
+        {{modelName}}::create($requestData);
 
-        return redirect('admin/privileges')->with('flash_message', 'Privilege added!');
+        return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} added!');
     }
 
     /**
@@ -77,9 +65,9 @@ class PrivilegesController extends Controller
      */
     public function show($id)
     {
-        $privilege = Privilege::findOrFail($id);
+        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
 
-        return view('admin.privileges.show', compact('privilege'));
+        return view('{{viewPath}}{{viewName}}.show', compact('{{crudNameSingular}}'));
     }
 
     /**
@@ -91,9 +79,9 @@ class PrivilegesController extends Controller
      */
     public function edit($id)
     {
-        $privilege = Privilege::findOrFail($id);
+        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
 
-        return view('admin.privileges.edit', compact('privilege'));
+        return view('{{viewPath}}{{viewName}}.edit', compact('{{crudNameSingular}}'));
     }
 
     /**
@@ -106,13 +94,13 @@ class PrivilegesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        {{validationRules}}
         $requestData = $request->all();
-        
-        $privilege = Privilege::findOrFail($id);
-        $privilege->update($requestData);
+        {{fileSnippet}}
+        ${{crudNameSingular}} = {{modelName}}::findOrFail($id);
+        ${{crudNameSingular}}->update($requestData);
 
-        return redirect('admin/privileges')->with('flash_message', 'Privilege updated!');
+        return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} updated!');
     }
 
     /**
@@ -124,8 +112,8 @@ class PrivilegesController extends Controller
      */
     public function destroy($id)
     {
-        Privilege::destroy($id);
+        {{modelName}}::destroy($id);
 
-        return redirect('admin/privileges')->with('flash_message', 'Privilege deleted!');
+        return redirect('{{routeGroup}}{{viewName}}')->with('flash_message', '{{modelName}} deleted!');
     }
 }
