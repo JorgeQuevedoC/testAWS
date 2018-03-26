@@ -67,13 +67,6 @@ class SectionController extends Controller
         return redirect('admin/section')->with('flash_message', 'Section added!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     *
-     * @return \Illuminate\View\View
-     */
     public function show($id)
     {
         $section = Section::findOrFail($id);

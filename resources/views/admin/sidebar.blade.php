@@ -11,11 +11,13 @@
                         Home
                     </a>
                 </li>
+                @can('index', App\Product::class)
                 <li role="presentation">
                     <a href="{{ url('/admin/product') }}">
                         Products
                     </a>
                 </li>
+                @endcan
                 <li role="presentation">
                     <a href="{{ url('/admin/section') }}">
                         Sections

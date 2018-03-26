@@ -39,9 +39,11 @@
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
                         <li class="nav-item">
+                                @can('index', App\Product::class)
                                 <a class="nav-link " href="/admin/product" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Products
                                 </a>
+                                @endcan
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link " href="/admin/section" role="button" aria-haspopup="true" aria-expanded="false" v-pre>

@@ -34,9 +34,11 @@ $sections = DB::table('sections')->selectRaw('*')->get();
             $column = $privilege->role_header;
             @endphp
             @if ($policy->$column == 1)
+                <input type="hidden" name="{{$privilege->role_header}}" value="0" id="{{$privilege->role_header}}" />
                 <input class="form-check-input" name="{{$privilege->role_header}}" type="checkbox" id="{{$privilege->role_header}}" value=1 checked>
                 <label class="form-check-label" for="{{$privilege->role_header}}">{{strtoupper($privilege->privilege)}}</label>
             @elseif ($policy->$column == 0)
+                <input type="hidden" name="{{$privilege->role_header}}" value="0" id="{{$privilege->role_header}}" />
                 <input class="form-check-input" name="{{$privilege->role_header}}" type="checkbox" id="{{$privilege->role_header}}" value=1>
                 <label class="form-check-label" for="{{$privilege->role_header}}">{{strtoupper($privilege->privilege)}}</label>
             @else
