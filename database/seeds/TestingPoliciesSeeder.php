@@ -16,5 +16,26 @@ class TestingPoliciesSeeder extends Seeder
             'section_id' => '1'
         ]);
 
+        DB::table('policies')->insert([
+            'policy' => 'indexProduct',
+            'section_id' => '3'
+        ]);
+        DB::table('policies')->insert([
+            'policy' => 'createProduct',
+            'section_id' => '3'
+        ]);
+        DB::table('policies')->insert([
+            'policy' => 'updateProduct',
+            'section_id' => '3'
+        ]);
+        DB::table('policies')->insert([
+            'policy' => 'readProduct',
+            'section_id' => '3'
+        ]);
+        DB::table('policies')->insert([
+            'policy' => 'deleteProduct',
+            'section_id' => '3'
+        ]);
+
     }
 }

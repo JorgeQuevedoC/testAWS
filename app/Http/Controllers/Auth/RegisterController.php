@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'privilege_id' => $data['privilege'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'api_token' => str_random(50)
         ]);
 
         \Mail::to($user)->send(new Welcome($user));

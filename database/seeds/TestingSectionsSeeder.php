@@ -20,7 +20,7 @@ class TestingSectionsSeeder extends Seeder
         ]);
 
         DB::table('sections')->insert([
-            'section' => 'cof',
+            'section' => 'products',
         ]);
     }
 }
