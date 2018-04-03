@@ -33,7 +33,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Name</th><th>Email</th><th>Privilege Id</th><th>Actions</th>
+                                        <th>Name</th><th>Email</th><th>Privilege Id</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,7 +43,6 @@
                                 $privilege = DB::table('privileges')->where('id', $item->privilege_id)->first();
                                 @endphp
                                     <tr>
-                                        <td>{{ $loop->iteration or $item->id }}</td>
                                         <td>{{ $item->name }}</td><td>{{ $item->email }}</td><td>{{ strtoupper($privilege->privilege) }}</td>
                                         <td>
                                             @can('view', App\User::class)
@@ -69,7 +68,8 @@
 
                     </div>
                 </div>
-                <div class="card">
+
+                <!-- <div class="card">
                     <div class="card-header">{{ __('Reset Password') }}</div>
 
 
@@ -107,7 +107,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> -->
 
 
 

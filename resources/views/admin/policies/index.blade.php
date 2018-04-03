@@ -30,14 +30,12 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Policy</th><th>Section</th><th>Actions</th>
+                                        <th>Policy</th><th>Section</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($policies as $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>
-
                                         @php
                                             $section = DB::table('sections')->where('id', $item->section_id)->first(); 
                                         @endphp

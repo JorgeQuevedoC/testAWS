@@ -19,7 +19,7 @@ $roles = App\Privilege::withoutEmpty()->get();
 </div>
 
 <div class="form-group {{ $errors->has('privilege_id') ? 'has-error' : ''}}">
-    <label for="privilege_id" class="col-md-4 control-label">{{ 'Privilege Id' }}</label>
+    <label for="privilege_id" class="col-md-4 control-label">{{ 'Role Id' }}</label>
     <div class="col-md-6">
         <select class="form-control" name="privilege_id" type="number" id="privilege_id" value="{{ $user->privilege_id or ''}}" required>
             @php
@@ -40,18 +40,14 @@ $roles = App\Privilege::withoutEmpty()->get();
 </div>
 
 <div class="form-group {{ $errors->has('password') ? 'has-error' : ''}}">
-    <label for="password2" class="col-md-4 control-label">{{ 'Password' }}</label>
     <div class="col-md-6">
-    <input class="form-control" name="password2" type="text" id="password2" value="{{ $user->password or ''}}" disabled>
         <input class="form-control" name="password" type="password" id="password" value="{{ $user->password or ''}}" required style="display:none;">
         {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 
 <div class="form-group {{ $errors->has('api_token') ? 'has-error' : ''}}">
-    <label for="api_token2" class="col-md-4 control-label">{{ 'API TOKEN' }}</label>
     <div class="col-md-6">
-    <input class="form-control" name="api_token2" type="text" id="api_token2" value="{{ $user->api_token or ''}}" disabled>
         <input class="form-control" name="api_token" type="text" id="api_token" value="{{ $user->api_token or ''}}" required style="display:none;">
         {!! $errors->first('api_token', '<p class="help-block">:message</p>') !!}
     </div>

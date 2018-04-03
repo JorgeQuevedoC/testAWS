@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Privileges</div>
+                    <div class="card-header">Roles</div>
                     <div class="card-body">
                         @php 
                             $slotsUsed = App\Privilege::getCountWithoutEmpty();
@@ -35,14 +35,13 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th><th>Privilege</th><th>Actions</th>
+                                        <th>Role</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($privileges as $item)
                                     @if ($item->privilege != 'empty')
                                         <tr>
-                                            <td>{{ $item->id }}</td>
                                             <td>{{ strtoupper($item->privilege) }}</td>
                                             <td>
                                                 <a href="{{ url('/admin/privileges/' . $item->id) }}" title="View Privilege"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Policies</button></a>

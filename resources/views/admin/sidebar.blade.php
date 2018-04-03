@@ -21,7 +21,7 @@
                 @can('fullAccess', App\Privilege::class)
                 <li role="presentation">
                     <a href="{{ url('/admin/section') }}">
-                        Sections
+                        Role's groups
                     </a>
                 </li>
                 <li role="presentation">

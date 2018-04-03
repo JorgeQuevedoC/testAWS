@@ -19,7 +19,7 @@ $roles = App\Privilege::withoutEmpty()->get();
 </div>
 
 <div class="form-group {{ $errors->has('privilege_id') ? 'has-error' : ''}}">
-    <label for="privilege_id" class="col-md-4 control-label">{{ 'Privilege Id' }}</label>
+    <label for="privilege_id" class="col-md-4 control-label">{{ 'Role Id' }}</label>
     <div class="col-md-6">
         <select class="form-control" name="privilege_id" type="number" id="privilege_id" value="{{ $user->privilege_id or ''}}" required>
             @foreach ($roles as $section)

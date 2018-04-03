@@ -177,7 +177,7 @@ class UsersController extends Controller
     {
         
         if($this->authorize('delete', User::class)){
-            $credentials = ['email' => $request->email];
+            $credentials = ['email' => $request->emailReset];
             $response = Password::sendResetLink($credentials, function (Message $message) {
                 $message->subject($this->getEmailSubject());
             });

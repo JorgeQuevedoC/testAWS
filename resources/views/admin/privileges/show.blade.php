@@ -23,8 +23,7 @@
                         <br/>
 
                         @php 
-                            $enrolledPolicies = App\Policy::select('policy')->where($privilege->role_header, '1')->paginate(16);
-                            $counter = 0;
+                            $enrolledPolicies = DB::table('policies')->join('sections', 'policies.section_id', '=', 'sections.id')->select('policies.id as ip','policies.policy', 'sections.section')->where($privilege->role_header, '1')->paginate(10);
                         @endphp
 
                         <div class="table-responsive">
@@ -47,17 +46,16 @@
                                     <tr>
                                         <th colspan="2" style="text-align:center;">Policies</th>
                                     </tr>
+                                    <tr>
+                                        <th style="text-align:center;">Name</th><th style="text-align:center;">Role's group</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($enrolledPolicies as $policies)
-                                    @if (($counter%2)==0)
                                     <tr>
-                                        <td>{{ $policies->policy }}</td>                                                   
-                                    @else
-                                        <td>{{ $policies->policy }}</td>
-                                    </tr>    
-                                    @endif
-                                    @php $counter = $counter+1; @endphp
+                                        <td><a href="{{ url('/admin/policies/' . $policies->ip . '/edit') }}" >{{ $policies->policy }}</a></td> 
+                                        <td>{{ $policies->section }}</td>
+                                    </tr>                                                      
                                 @endforeach
                                 </tbody>
                             </table>
