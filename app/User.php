@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function scopePrivilegeInUse($query, $privilege_id)
+    {
+        return $query->where('privilege_id', $privilege_id);
+    }
 }

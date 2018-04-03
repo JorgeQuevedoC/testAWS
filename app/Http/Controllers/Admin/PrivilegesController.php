@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Privilege;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PrivilegesController extends Controller
@@ -71,8 +72,10 @@ class PrivilegesController extends Controller
     public function store(Request $request)
     {
         if($this->authorize('fullAccess', Privilege::class)){
-            $requestData = $request->all();        
-            Privilege::create($requestData);
+            
+            $privilege = Privilege::findOrFail($request->id);
+            $privilege->privilege = $request->privilege;
+            $privilege->save();
             return redirect('admin/privileges')->with('flash_message', 'Privilege added!');
         }else{
             return redirect('admin/privileges')->with('flash_message', 'Permission Denied!');
@@ -143,8 +146,12 @@ class PrivilegesController extends Controller
      */
     public function destroy($id)
     {
-        if($this->authorize('fullAccess', Privilege::class)){
-            Privilege::destroy($id);
+        if($this->authorize('fullAccess', Privilege::class)){       
+            $privilege = Privilege::findOrFail($id);
+            $privilege->privilege = 'empty';
+            $reset = DB::table('policies')->where($privilege->role_header, 1)->update([$privilege->role_header=>0]);
+            $privilege->save();
+
             return redirect('admin/privileges')->with('flash_message', 'Privilege deleted!');
         }else{
             return redirect('admin/privileges')->with('flash_message', 'Permission Denied!');
