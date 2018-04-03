@@ -17,7 +17,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'FMS') }}
                 </a>
@@ -38,45 +38,47 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
+                        @can('index', App\User::class)
+                        <li class="nav-item">                            
+                            <a class="nav-link " href="/admin/users" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Users
+                            </a>                            
+                        </li>
+                        @endcan
+                        @can('fullAccess', App\Privilege::class)
                         <li class="nav-item">
-                                @can('index', App\Product::class)
-                                <a class="nav-link " href="/admin/product" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Products
-                                </a>
-                                @endcan
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="/admin/section" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Sections
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="/admin/privileges" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Roles
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="/admin/policies" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Policies
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                            <a class="nav-link " href="/admin/section" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Sections
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/admin/privileges" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Roles
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="/admin/policies" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Policies
+                            </a>
+                        </li>
+                        @endcan
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>

@@ -3,13 +3,12 @@
 namespace App\Policies;
 
 use App\User;
-use App\Product;
 use App\Policy;
 use App\Privilege;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\DB;
 
-class ProductPolicy
+class UserPolicy
 {
     use HandlesAuthorization;
 
@@ -22,7 +21,7 @@ class ProductPolicy
     public function index(User $user)
     {
 
-        $policyId = DB::table('policies')->select('id')->where('policy' , 'indexProduct')->first();
+        $policyId = DB::table('policies')->select('id')->where('policy' , 'indexUser')->first();
         //dd($policyId);
         if ($policyId == null){
             $respuesta = true;
@@ -52,7 +51,7 @@ class ProductPolicy
      */
     public function view(User $user)
     {
-        $policyId = DB::table('policies')->select('id')->where('policy' , 'readProduct')->first();
+        $policyId = DB::table('policies')->select('id')->where('policy' , 'readUser')->first();
         //dd($policyId);
         if ($policyId == null){
             $respuesta = true;
@@ -82,7 +81,7 @@ class ProductPolicy
     public function create(User $user)
     {
 
-        $policyId = DB::table('policies')->select('id')->where('policy' , 'createProduct')->first();
+        $policyId = DB::table('policies')->select('id')->where('policy' , 'createUser')->first();
         //dd($policyId);
         if ($policyId == null){
             $respuesta = true;
@@ -112,7 +111,7 @@ class ProductPolicy
      */
     public function update(User $user)
     {
-        $policyId = DB::table('policies')->select('id')->where('policy' , 'updateProduct')->first();
+        $policyId = DB::table('policies')->select('id')->where('policy' , 'updateUser')->first();
         //dd($policyId);
         if ($policyId == null){
             $respuesta = true;
@@ -142,7 +141,7 @@ class ProductPolicy
      */
     public function delete(User $user)
     { 
-        $policyId = DB::table('policies')->select('id')->where('policy' , 'deleteProduct')->first();
+        $policyId = DB::table('policies')->select('id')->where('policy' , 'deleteUser')->first();
         //dd($policyId);
         if ($policyId == null){
             $respuesta = true;
@@ -163,3 +162,4 @@ class ProductPolicy
         return $respuesta;
     }
 }
+

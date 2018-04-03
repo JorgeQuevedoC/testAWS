@@ -28,17 +28,23 @@ class PrivilegesController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 10;
 
-        if (!empty($keyword)) {
-            $privileges = Privilege::where('privilege', 'LIKE', "%$keyword%")
-                ->orWhere('role_header', 'LIKE', "%$keyword%")
-                ->paginate($perPage);
-        } else {
-            $privileges = Privilege::paginate($perPage);
-        }
+        if($this->authorize('fullAccess', Privilege::class)){
+            if (!empty($keyword)) {
+                $privileges = Privilege::where('privilege', 'LIKE', "%$keyword%")
+                    ->orWhere('role_header', 'LIKE', "%$keyword%")
+                    ->paginate($perPage);
+            } else {
+                $privileges = Privilege::paginate($perPage);
+            }
 
-        return view('admin.privileges.index', compact('privileges'));
+            return view('admin.privileges.index', compact('privileges'));
+        }else{
+            return redirect('home')->with('flash_message', 'Permission Denied!');
+        }  
+
+        
     }
 
     /**
@@ -48,7 +54,11 @@ class PrivilegesController extends Controller
      */
     public function create()
     {
-        return view('admin.privileges.create');
+        if($this->authorize('fullAccess', Privilege::class)){
+            return view('admin.privileges.create');
+        }else{
+            return redirect('admin/privileges')->with('flash_message', 'Permission Denied!');
+        } 
     }
 
     /**
@@ -60,12 +70,13 @@ class PrivilegesController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $requestData = $request->all();
-        
-        Privilege::create($requestData);
-
-        return redirect('admin/privileges')->with('flash_message', 'Privilege added!');
+        if($this->authorize('fullAccess', Privilege::class)){
+            $requestData = $request->all();        
+            Privilege::create($requestData);
+            return redirect('admin/privileges')->with('flash_message', 'Privilege added!');
+        }else{
+            return redirect('admin/privileges')->with('flash_message', 'Permission Denied!');
+        }     
     }
 
     /**
@@ -77,9 +88,12 @@ class PrivilegesController extends Controller
      */
     public function show($id)
     {
-        $privilege = Privilege::findOrFail($id);
-
-        return view('admin.privileges.show', compact('privilege'));
+        if($this->authorize('fullAccess', Privilege::class)){
+            $privilege = Privilege::findOrFail($id);
+            return view('admin.privileges.show', compact('privilege'));
+        }else{
+            return redirect('admin/privileges')->with('flash_message', 'Permission Denied!');
+        } 
     }
 
     /**
@@ -91,9 +105,12 @@ class PrivilegesController extends Controller
      */
     public function edit($id)
     {
-        $privilege = Privilege::findOrFail($id);
-
-        return view('admin.privileges.edit', compact('privilege'));
+        if($this->authorize('fullAccess', Privilege::class)){
+            $privilege = Privilege::findOrFail($id);
+            return view('admin.privileges.edit', compact('privilege'));
+        }else{
+            return redirect('admin/privileges')->with('flash_message', 'Permission Denied!');
+        }        
     }
 
     /**
@@ -106,13 +123,15 @@ class PrivilegesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if($this->authorize('fullAccess', Privilege::class)){
+            $requestData = $request->all();        
+            $privilege = Privilege::findOrFail($id);
+            $privilege->update($requestData);
+            return redirect('admin/privileges')->with('flash_message', 'Privilege updated!');
+        }else{
+            return redirect('admin/privileges')->with('flash_message', 'Permission Denied!');
+        } 
         
-        $requestData = $request->all();
-        
-        $privilege = Privilege::findOrFail($id);
-        $privilege->update($requestData);
-
-        return redirect('admin/privileges')->with('flash_message', 'Privilege updated!');
     }
 
     /**
@@ -124,8 +143,11 @@ class PrivilegesController extends Controller
      */
     public function destroy($id)
     {
-        Privilege::destroy($id);
-
-        return redirect('admin/privileges')->with('flash_message', 'Privilege deleted!');
+        if($this->authorize('fullAccess', Privilege::class)){
+            Privilege::destroy($id);
+            return redirect('admin/privileges')->with('flash_message', 'Privilege deleted!');
+        }else{
+            return redirect('admin/privileges')->with('flash_message', 'Permission Denied!');
+        }         
     }
 }
