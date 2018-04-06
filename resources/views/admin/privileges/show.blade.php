@@ -47,7 +47,7 @@
                                         <th colspan="2" style="text-align:center;">Policies</th>
                                     </tr>
                                     <tr>
-                                        <th style="text-align:center;">Name</th><th style="text-align:center;">Role's group</th>
+                                        <th style="text-align:center;">Name</th><th style="text-align:center;">Policy group</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -49,7 +49,7 @@
                         @can('fullAccess', App\Privilege::class)
                         <li class="nav-item">
                             <a class="nav-link " href="/admin/section" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Role's groups
+                                Policies groups
                             </a>
                         </li>
                         <li class="nav-item">

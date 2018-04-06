@@ -7,7 +7,7 @@
             
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Role's groups</div>
+                    <div class="card-header">Policies groups</div>
                     <div class="card-body">
                         <a href="{{ url('/admin/section/create') }}" class="btn btn-success btn-sm" title="Add New Section">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
@@ -30,7 +30,7 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Role's groups</th><th>Actions</th>
+                                        <th>Policies groups</th><th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
